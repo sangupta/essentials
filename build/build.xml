@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<project name="as3utils | myJerry" basedir="./.." default="build">
+<project name="essentials | myJerry" basedir="./.." default="build">
 
 	<property file="build/build.properties" />
 
