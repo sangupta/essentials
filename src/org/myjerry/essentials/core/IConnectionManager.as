@@ -21,7 +21,9 @@
 
 package org.myjerry.essentials.core {
 	
-	public interface IConnectionManager extends IDispose
+	import org.myjerry.as3extensions.IDisposable;
+	
+	public interface IConnectionManager extends IDisposable
 	{
 		function get isApplicationOnline():Boolean;
 		

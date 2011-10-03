@@ -25,6 +25,7 @@ package org.myjerry.essentials {
 	
 	import mx.core.WindowedApplication;
 	
+	import org.myjerry.as3utils.AssertUtils;
 	import org.myjerry.essentials.application.EssentialsSparkApplication;
 	import org.myjerry.essentials.config.EssentialsConfiguration;
 	import org.myjerry.essentials.core.IConnectionManager;
@@ -40,7 +41,7 @@ package org.myjerry.essentials {
 	import org.myjerry.essentials.system.SystemManager;
 	import org.myjerry.essentials.updates.UpdateManager;
 	import org.myjerry.essentials.usage.UsageManager;
-	import org.myjerry.essentials.utils.StringUtils;
+	import org.myjerry.as3utils.StringUtils;
 	
 	import spark.components.WindowedApplication;
 
@@ -204,7 +205,7 @@ package org.myjerry.essentials {
 			
 			// check configuration for validation errors
 			if(config.app.allowMinimizeToSystemTray) {
-				if(StringUtils.isEmpty(config.app.systemTrayToolTip)) {
+				if(AssertUtils.isEmptyString(config.app.systemTrayToolTip)) {
 					throw new Error("You need to specify 'systemTrayToolTip' to use minimize to system tray functionality."); 
 				}
 			}

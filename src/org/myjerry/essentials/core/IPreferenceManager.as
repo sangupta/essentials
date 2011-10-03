@@ -21,7 +21,9 @@
 
 package org.myjerry.essentials.core {
 	
-	public interface IPreferenceManager extends IDispose {
+	import org.myjerry.as3extensions.IDisposable;
+	
+	public interface IPreferenceManager extends IDisposable {
 		
 		function deletePreference(preferenceKey:String):void;
 		

@@ -24,11 +24,11 @@ package org.myjerry.essentials.preferences {
 	import flash.data.SQLResult;
 	import flash.data.SQLStatement;
 	
+	import org.myjerry.as3utils.StringUtils;
 	import org.myjerry.essentials.Essentials;
 	import org.myjerry.essentials.config.PreferenceConfig;
 	import org.myjerry.essentials.core.IDatabaseManager;
 	import org.myjerry.essentials.core.IPreferenceManager;
-	import org.myjerry.essentials.utils.StringUtils;
 	
 	public class PreferencesManager implements IPreferenceManager {
 		

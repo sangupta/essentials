@@ -30,16 +30,18 @@ package org.myjerry.essentials.application {
 	import mx.events.AIREvent;
 	import mx.events.ResizeEvent;
 	
+	import org.myjerry.as3extensions.IDisposable;
+	import org.myjerry.as3utils.AssertUtils;
+	import org.myjerry.as3utils.StringUtils;
 	import org.myjerry.essentials.Essentials;
 	import org.myjerry.essentials.application.BaseEssentialsApplication;
 	import org.myjerry.essentials.config.AppConfig;
 	import org.myjerry.essentials.config.EssentialsConfiguration;
-	import org.myjerry.essentials.core.IDispose;
-	import org.myjerry.essentials.utils.StringUtils;
+	import org.myjerry.as3utils.StringUtils;
 	
 	import spark.components.WindowedApplication;
 	
-	public class EssentialsSparkApplication extends BaseEssentialsApplication implements IDispose {
+	public class EssentialsSparkApplication extends BaseEssentialsApplication implements IDisposable {
 		
 		/**
 		 * The instance of the Spark windowed application over which we work
@@ -131,7 +133,7 @@ package org.myjerry.essentials.application {
 			// set width
 			num = Essentials.preferences.getPreference(APPLICATION_WIDTH);
 			defaultValue = this.config.defaultApplicationWidth;
-			if(StringUtils.isNotEmpty(num)) {
+			if(AssertUtils.isNotEmptyString(num)) {
 				n = StringUtils.getNumber(num);
 				if(n <  defaultValue) {
 					n = defaultValue;
@@ -145,7 +147,7 @@ package org.myjerry.essentials.application {
 			// set height
 			num = Essentials.preferences.getPreference(APPLICATION_HEIGHT);
 			defaultValue = this.config.defaultApplicationHeight;
-			if(StringUtils.isNotEmpty(num)) {
+			if(AssertUtils.isNotEmptyString(num)) {
 				n = StringUtils.getNumber(num);
 				if(n < defaultValue) {
 					n = defaultValue;
@@ -157,7 +159,7 @@ package org.myjerry.essentials.application {
 			
 			// set X coord
 			num = Essentials.preferences.getPreference(APPLICATION_POSITION_X);
-			if(StringUtils.isNotEmpty(num)) {
+			if(AssertUtils.isNotEmptyString(num)) {
 				n = StringUtils.getNumber(num);
 				if(n < 0) {
 					n = (Capabilities.screenResolutionX - application.width) / 2;
@@ -169,7 +171,7 @@ package org.myjerry.essentials.application {
 			
 			// set width
 			num = Essentials.preferences.getPreference(APPLICATION_POSITION_Y);
-			if(StringUtils.isNotEmpty(num)) {
+			if(AssertUtils.isNotEmptyString(num)) {
 				n = StringUtils.getNumber(num);
 				if(n < 0) {
 					n = (Capabilities.screenResolutionY - application.height) / 2;

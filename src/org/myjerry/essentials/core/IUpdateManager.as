@@ -21,8 +21,9 @@
 
 package org.myjerry.essentials.core {
 	
-	public interface IUpdateManager extends IDispose
-	{
+	import org.myjerry.as3extensions.IDisposable;
+	
+	public interface IUpdateManager extends IDisposable {
 
 		function checkForApplicationUpdates():void;
 		

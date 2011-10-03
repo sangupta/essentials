@@ -24,8 +24,10 @@ package org.myjerry.essentials.core {
 	import flash.data.SQLResult;
 	import flash.data.SQLStatement;
 	import flash.net.Responder;
+	
+	import org.myjerry.as3extensions.IDisposable;
 
-	public interface IDatabaseManager extends IDispose
+	public interface IDatabaseManager extends IDisposable
 	{
 		function getStatement(query:String):SQLStatement;
 		

@@ -20,8 +20,10 @@
  */
 
 package org.myjerry.essentials.core {
+	
+	import org.myjerry.as3extensions.IDisposable;
 
-	public interface IEssentialsApplication extends IDispose {
+	public interface IEssentialsApplication extends IDisposable {
 		
 		function resetLastKnownApplicationLocation():void;
 		

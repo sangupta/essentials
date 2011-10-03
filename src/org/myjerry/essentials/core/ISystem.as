@@ -21,8 +21,9 @@
 
 package org.myjerry.essentials.core {
 	
-	public interface ISystem extends IDispose
-	{
+	import org.myjerry.as3extensions.IDisposable;
+	
+	public interface ISystem extends IDisposable {
 		function get applicationVersion():String;
 		
 		function get applicationVersionLabel():String;

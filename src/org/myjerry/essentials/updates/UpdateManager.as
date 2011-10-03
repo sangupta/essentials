@@ -31,11 +31,12 @@ package org.myjerry.essentials.updates {
 	import mx.logging.ILogger;
 	import mx.logging.Log;
 	
+	import org.myjerry.as3utils.AssertUtils;
 	import org.myjerry.essentials.Essentials;
 	import org.myjerry.essentials.config.UpdatesConfig;
 	import org.myjerry.essentials.core.IUpdateManager;
 	import org.myjerry.essentials.utils.DateUtils;
-	import org.myjerry.essentials.utils.StringUtils;
+	import org.myjerry.as3utils.StringUtils;
 	
 	public class UpdateManager implements IUpdateManager {
 		
@@ -84,7 +85,7 @@ package org.myjerry.essentials.updates {
 				throw new Error("Application update management is disabled.");
 			}
 			
-			if(StringUtils.isEmpty(this.config.applicationUpdateURL)) {
+			if(AssertUtils.isEmptyString(this.config.applicationUpdateURL)) {
 				throw new Error("Cannot check for application updates on null/empty update URL.");
 			}
 			
@@ -146,7 +147,7 @@ package org.myjerry.essentials.updates {
 		private function readLastUpdateTime():Date {
 			var time:String = Essentials.preferences.getPreference(LAST_APP_UPDATE_CHECK);
 			var d:Date = null;
-			if(StringUtils.isNotEmpty(time)) {
+			if(AssertUtils.isNotEmptyString(time)) {
 				var t:Number = Number(time);
 				d = new Date();
 				d.time = t;

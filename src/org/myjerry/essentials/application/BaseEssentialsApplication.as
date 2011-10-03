@@ -38,10 +38,11 @@ package org.myjerry.essentials.application {
 	import mx.logging.Log;
 	import mx.utils.UIDUtil;
 	
+	import org.myjerry.as3utils.AssertUtils;
+	import org.myjerry.as3utils.StringUtils;
 	import org.myjerry.essentials.Essentials;
 	import org.myjerry.essentials.config.AppConfig;
 	import org.myjerry.essentials.core.IEssentialsApplication;
-	import org.myjerry.essentials.utils.StringUtils;
 
 	/**
 	 * Contains all convenience functions that can be abstracted
@@ -72,7 +73,7 @@ package org.myjerry.essentials.application {
 			
 			if(uuid == null) {
 				uuid = Essentials.preferences.getPreference(APPLICATION_UUID);
-				if(StringUtils.isEmpty(uuid)) {
+				if(AssertUtils.isEmptyString(uuid)) {
 					// create a new UUID and store it
 					uuid = UIDUtil.createUID();
 					Essentials.preferences.savePreference(APPLICATION_UUID, uuid);

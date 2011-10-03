@@ -21,8 +21,9 @@
 
 package org.myjerry.essentials.core {
 	
-	public interface IUsageManager extends IDispose
-	{
+	import org.myjerry.as3extensions.IDisposable;
+	
+	public interface IUsageManager extends IDisposable {
 		function trackApplicationLaunch():void;
 		
 		function trackUsage(usageString:String):void;

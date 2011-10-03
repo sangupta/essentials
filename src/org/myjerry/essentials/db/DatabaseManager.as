@@ -31,12 +31,12 @@ package org.myjerry.essentials.db {
 	import mx.logging.ILogger;
 	import mx.logging.Log;
 	
+	import org.myjerry.as3extensions.IDisposable;
+	import org.myjerry.as3utils.AssertUtils;
 	import org.myjerry.essentials.config.DatabaseConfig;
 	import org.myjerry.essentials.core.IDatabaseManager;
-	import org.myjerry.essentials.core.IDispose;
-	import org.myjerry.essentials.utils.StringUtils;
 	
-	public class DatabaseManager implements IDatabaseManager, IDispose {
+	public class DatabaseManager implements IDatabaseManager, IDisposable {
 
 		/**
 		 * Shared database connection
@@ -74,14 +74,15 @@ package org.myjerry.essentials.db {
 			}
 			
 			// check and create DATABASE TABLES as necessary
-			new DatabaseTables().checkAndCreateDatabaseTables(this, configuration);
+			var dbManager:DatabaseTables = new DatabaseTables();
+			dbManager.checkAndCreateDatabaseTables(this, configuration);
 		}
 		
 		/**
 		 * Execute a given query and return its results back.
 		 */
 		public function executeSQLQuery(statement:String):SQLResult {
-			if(dbConnection != null && dbConnection.connected && StringUtils.isNotEmpty(statement)) {
+			if(dbConnection != null && dbConnection.connected && AssertUtils.isNotEmptyString(statement)) {
 				try {
 					var sqlStatement:SQLStatement = new SQLStatement();
 					sqlStatement.sqlConnection = dbConnection;
@@ -99,7 +100,7 @@ package org.myjerry.essentials.db {
 		 * Return a prepared statement for the given query string.
 		 */
 		public function getStatement(query:String):SQLStatement {
-			if(StringUtils.isEmpty(query)) {
+			if(AssertUtils.isEmptyString(query)) {
 				throw new Error('Query cannot be null/empty.');
 			}
 			
