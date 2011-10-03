@@ -35,7 +35,7 @@ package org.myjerry.essentials.updates {
 	import org.myjerry.essentials.Essentials;
 	import org.myjerry.essentials.config.UpdatesConfig;
 	import org.myjerry.essentials.core.IUpdateManager;
-	import org.myjerry.essentials.utils.DateUtils;
+	import org.myjerry.as3utils.DateUtils;
 	import org.myjerry.as3utils.StringUtils;
 	
 	public class UpdateManager implements IUpdateManager {

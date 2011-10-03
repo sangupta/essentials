@@ -32,17 +32,13 @@ package org.myjerry.essentials.db {
 	import mx.logging.Log;
 	
 	import org.myjerry.as3extensions.IDisposable;
+	import org.myjerry.as3extensions.db.Database;
 	import org.myjerry.as3utils.AssertUtils;
 	import org.myjerry.essentials.config.DatabaseConfig;
 	import org.myjerry.essentials.core.IDatabaseManager;
 	
-	public class DatabaseManager implements IDatabaseManager, IDisposable {
+	public class DatabaseManager extends Database implements IDatabaseManager, IDisposable {
 
-		/**
-		 * Shared database connection
-		 */
-		protected var dbConnection:SQLConnection = null;
-		
 		/**
 		 * Shared logger between this class and its child classes (if any)
 		 */
@@ -52,6 +48,8 @@ package org.myjerry.essentials.db {
 		 * Constructor
 		 */
 		public function DatabaseManager(configuration:DatabaseConfig) {
+			super();
+			
 			// create a database connection if not already done
 			if(configuration.databaseConnection == null) {
 				// create the connection
@@ -74,65 +72,8 @@ package org.myjerry.essentials.db {
 			}
 			
 			// check and create DATABASE TABLES as necessary
-			var dbManager:DatabaseTables = new DatabaseTables();
-			dbManager.checkAndCreateDatabaseTables(this, configuration);
-		}
-		
-		/**
-		 * Execute a given query and return its results back.
-		 */
-		public function executeSQLQuery(statement:String):SQLResult {
-			if(dbConnection != null && dbConnection.connected && AssertUtils.isNotEmptyString(statement)) {
-				try {
-					var sqlStatement:SQLStatement = new SQLStatement();
-					sqlStatement.sqlConnection = dbConnection;
-					sqlStatement.text = statement ;
-					sqlStatement.execute();
-					return sqlStatement.getResult();
-				} catch(e:Error) {
-					logger.error("Error executing DB statement: " + statement + "\nError caught: " + e.toString());
-				}
-			}
-			return null;
-		}
-		
-		/**
-		 * Return a prepared statement for the given query string.
-		 */
-		public function getStatement(query:String):SQLStatement {
-			if(AssertUtils.isEmptyString(query)) {
-				throw new Error('Query cannot be null/empty.');
-			}
-			
-			var statement:SQLStatement = new SQLStatement();
-			statement.sqlConnection = dbConnection;
-			statement.text = query;
-			return statement;
-		}
-		
-		public function beginTransaction(option:String = null, responder:Responder = null):void {
-			dbConnection.begin(option, responder);
-		}
-		
-		public function commitTransaction(responder:Responder = null):void {
-			dbConnection.commit(responder);
-		}
-		
-		public function rollbackTransaction(responder:Responder = null):void {
-			dbConnection.rollback(responder);
-		}
-		
-		/**
-		 * Prepare this object for destruction and garbage collection
-		 */
-		public function dispose():void {
-			try {
-				this.dbConnection.close();
-			} catch(e:Error) {
-				
-			}
-			
-			this.dbConnection = null;
+			var dbTables:DatabaseTables = new DatabaseTables();
+			dbTables.checkAndCreateDatabaseTables(this, configuration);
 		}
 		
 	}
