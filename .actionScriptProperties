@@ -9,6 +9,8 @@
           <libraryPathEntry kind="3" linkType="1" path="${PROJECT_FRAMEWORKS}/libs/core.swc" useDefaultLinkType="false"/>
         </excludedEntries>
       </libraryPathEntry>
+      <libraryPathEntry kind="3" linkType="1" path="/as3utils/bin/as3utils.swc" useDefaultLinkType="false"/>
+      <libraryPathEntry kind="3" linkType="1" path="/as3extensions/bin/as3extensions.swc" useDefaultLinkType="false"/>
     </libraryPath>
     <sourceAttachmentPath/>
   </compiler>
